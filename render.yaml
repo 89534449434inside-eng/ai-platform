@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: ai-platform
+    runtime: python
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+```
+
+**Commit changes**
+
+---
+
+### ШАГ 3: Вернись в Render
+
+Нажми **"Manual Deploy"** → **"Deploy latest commit"**
+
+Или подожди - Render сам увидит изменения и передеплоит.
+
+---
+
+## ⏳ АЛЬТЕРНАТИВА (БЫСТРЕЕ)
+
+### Измени настройки прямо в Render:
+
+1. В Render слева найди **"Settings"**
+2. Найди **"Build Command"**
+3. Измени на:
+```
+pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
